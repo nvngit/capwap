@@ -1,0 +1,64 @@
+module capwap-message {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:capwap-message";
+    prefix "capwap-msg";
+
+    import ietf-inet-types { prefix inet; revision-date 2010-09-24; }
+    import capwap-types { prefix capwap-types; revision-date 2015-02-17; }
+
+    contact "Navin Agrawal <nagrawal@brocade.com>";
+
+    description
+        "This module contains the base data model of a CAPWAP message.
+        It rolls up the definitions contained in RFC5415.
+
+        This program and the accompanying materials are made available
+        under the terms of the Eclipse Public License v1.0 which
+        accompanies this distribution, and is available at
+        http://www.eclipse.org/legal/epl-v10.html";
+
+    revision "2015-02-17" {
+        description
+            "Initial revision.";
+        reference "RFC5415";
+    }
+
+    notification discovery-request {
+        description "discovery request Message";
+        reference "https://tools.ietf.org/html/rfc5415#section-4.5.1.1";
+
+	container capwap-header {
+	    uses capwap-types:capwap-header;
+	}
+
+	container capwap-control-header {
+	    uses capwap-types:capwap-control-header;
+	}
+
+	container discovery-type {
+	    uses capwap-types:discovery-type;
+	}
+
+	container wtp-board-data {
+	    uses capwap-types:wtp-board-data;
+	}
+
+	container wtp-descriptor {
+	    uses capwap-types:wtp-descriptor;
+	}
+
+	container wtp-frame-tunnel-mode {
+	    uses capwap-types:wtp-frame-tunnel-mode;
+	}
+
+	container wtp-mac-type {
+	    uses capwap-types:wtp-mac-type;
+	}
+    }
+
+    notification discovery-response {
+        description "discovery request Message";
+        reference "https://tools.ietf.org/html/rfc5415#section-4.5.1.1";
+    }
+
+}

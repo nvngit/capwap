@@ -1,0 +1,280 @@
+module capwap-types {
+    yang-version 1;
+    namespace "urn:opendaylight:params:xml:ns:yang:capwap-types";
+    prefix "capwap-types";
+
+    import ietf-inet-types { prefix inet; revision-date 2010-09-24; }
+
+    contact "Navin Agrawal <nagrawal@brocade.com>";
+
+    description
+        "This module contains the base data model of a CAPWAP message types.
+        It rolls up the definitions contained in RFC5415.
+
+        This program and the accompanying materials are made available
+        under the terms of the Eclipse Public License v1.0 which
+        accompanies this distribution, and is available at
+        http://www.eclipse.org/legal/epl-v10.html";
+
+    revision "2015-02-17" {
+        description
+            "Initial revision.";
+        reference "RFC5415";
+    }
+
+    typedef capwap-version {
+        description "CAPWAP version";
+	type uint8 {
+		range 0..15;
+	}
+    }
+
+    typedef capwap-pkt-type {
+        description "CAPWAP packet type";
+	type uint8 {
+		range 0..1;
+	}
+    }
+
+    typedef capwap-control-msg-type {
+        description "Values of CAPWAP Control Message Type";
+	type uint32 {
+		range 1..26;
+	}
+    }
+
+    typedef capwap-control-msg-element-type {
+        description "Values of CAPWAP Control Message Element Type";
+	type uint16 {
+		range 1..49;
+	}
+    }
+
+    grouping capwap-preamble {
+	reference "TBD"
+        description "Capwap Preamble";
+
+        leaf version {
+            type capwap-version;
+        }
+
+        leaf type {
+            type capwap-pkt-type;
+        }
+    }
+
+    grouping capwap-header {
+	reference "TBD"
+        description "Capwap Header";
+
+	use capwap-preamble;
+    }
+
+    grouping capwap-dtls-header {
+	reference "TBD"
+        description "Capwap DTLS Header";
+
+	use capwap-preamble;
+    }
+
+    grouping capwap-control-header {
+	reference "TBD"
+        description "Capwap Control Header";
+    }
+
+    grouping ac-info-sub-element {
+	reference "TBD"
+        description "AC Information Sub-element";
+
+        leaf vendor-id {
+            type uint32;
+        }
+        leaf info-type {
+            type uint16;
+        }
+        leaf info-length {
+            type uint16;
+        }
+        leaf-list info-data {
+            type uint8;
+        }
+    }
+
+    grouping ac-descriptor {
+	reference "TBD"
+        description "AC Descriptor";
+
+        leaf stations {
+            type uint16;
+        }
+        leaf limit {
+            type uint16;
+        }
+        leaf active-wtp {
+            type uint16;
+        }
+        leaf max-wtp {
+            type uint16;
+        }
+        leaf security {
+            type uint8;
+        }
+        leaf r-mac-field {
+            type uint8;
+        }
+        leaf resvd1 {
+            type uint8;
+        }
+        leaf dtls-policy {
+            type uint8;
+        }
+    }
+
+    grouping ac-ipv4-list {
+	reference "TBD"
+        description "AC IPv4 List";
+
+        leaf-list ac-ipv4 {
+            type inet:ipv4-address;
+        }
+    }
+
+    grouping ac-ipv6-list {
+	reference "TBD"
+        description "AC IPv6 List";
+
+        leaf-list ac-ipv6 {
+            type inet:ipv6-address;
+        }
+    }
+
+    grouping ac-name {
+	reference "TBD"
+        description "AC Name";
+
+        leaf-list name {
+            type uint8;
+        }
+    }
+
+    grouping ac-name-priority {
+	reference "TBD"
+        description "AC Name Priority";
+
+        leaf priority {
+            type uint8;
+        }
+        leaf-list name {
+            type uint8;
+        }
+    }
+
+    grouping ac-timestamp {
+	reference "TBD"
+        description "AC Timestamp";
+
+        leaf timestamp {
+            type uint32;
+        }
+    }
+
+    grouping eui-mac {
+	reference "TBD"
+        description "EUI format of MAC address";
+
+        leaf length {
+            type uint8;
+        }
+
+        leaf-list macbyte {
+            type uint8;
+        }
+    }
+
+    grouping ac-mac-acl-entry {
+	reference "TBD"
+        description "AC MAC ACL Entry";
+
+        leaf num-entries {
+            type uint8;
+        }
+
+	leaf-list mac {
+	    uses eui-mac;
+	}
+    }
+
+    grouping add-station {
+	reference "TBD"
+        description "Add Station";
+
+        leaf radio-id {
+            type uint8;
+        }
+
+	leaf-list mac {
+	    uses eui-mac;
+	}
+
+	leaf-list vlan-name {
+	    type uint8;
+	}
+    }
+
+    grouping capwap-control-ipv4-address {
+	reference "TBD"
+        description "Capwap Control IPv4 Address";
+
+        leaf ipv4-address {
+            type inet:ipv4-address;
+        }
+
+	leaf wtp-count {
+	    type uint16;
+	}
+    }
+
+    grouping capwap-control-ipv6-address {
+	reference "TBD"
+        description "Capwap Control IPv6 Address";
+
+        leaf ipv6-address {
+            type inet:ipv6-address;
+        }
+
+	leaf wtp-count {
+	    type uint16;
+	}
+    }
+
+    grouping capwap-local-ipv4-address {
+	reference "TBD"
+        description "Capwap Local IPv4 Address";
+
+        leaf ipv4-address {
+            type inet:ipv4-address;
+        }
+    }
+
+    grouping capwap-local-ipv6-address {
+	reference "TBD"
+        description "Capwap Local IPv6 Address";
+
+        leaf ipv6-address {
+            type inet:ipv6-address;
+        }
+    }
+
+    grouping capwap-timers {
+	reference "TBD"
+        description "Capwap Timers";
+
+        leaf discovery {
+            type uint8;
+        }
+
+        leaf echo-request {
+            type uint8;
+        }
+    }
+}
