@@ -16,7 +16,7 @@
     <module>parent</module>
     <module>wtpdiscover</module>
     <module>wtpmgr</module>
-    <module>feature</module>
+    <module>features</module>
   </modules>
   <properties>
       <nexusproxy>http://nexus.opendaylight.org/content</nexusproxy>
