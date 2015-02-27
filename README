@@ -20,6 +20,12 @@ dtlsmgr:
 wtpmgr:
 	WTP management thread
 
+parent:
+	TBD
+
+features:
+	TBD
+
 
 HOW TO BUILD
 ============
